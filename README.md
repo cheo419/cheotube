@@ -16,3 +16,6 @@
 /videos/upload -> Upload Video
 
 server start npm run dev
+server stop ctrl + c
+Tip :
+useFindAndModify and useCreateIndex are default
