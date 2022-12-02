@@ -23,7 +23,8 @@ app.use(
   );
   
 app.use((req, res, next) => {
-req.sessionStore.all((error, sessions) => {
+    res.locals.sexy = "you";
+    req.sessionStore.all((error, sessions) => {
         console.log(sessions);
         next();
     });
