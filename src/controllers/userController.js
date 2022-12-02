@@ -55,7 +55,7 @@ export const postLogin = async (req, res) => {
     });
   }
   req.session.loggedIn = true;
-  req.session.user = user;
+  req.session.user = user; // 위까지해서 이 두줄이 실제 세션을 초기화 하는 부분
   return res.redirect("/");
 };
 

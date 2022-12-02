@@ -19,8 +19,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(
     session({
       secret: "Hello!",
-      resave: true,
-      saveUninitialized: true,
+      resave: false,
+      saveUninitialized: false, // 새로운 세션이 있는데 수정된 적이 없으면 초기화 되지 않은거임
       store: MongoStore.create({ mongoUrl: "mongodb://127.0.0.1:27017/cheotube" }),
     })
   );
