@@ -21,9 +21,6 @@ app.use(
         secret: process.env.COOKIE_SECRET,
         resave: false,
         saveUninitialized: false,
-        //   cookie: {
-        //     maxAge: 30000, // 밀리세컨드로 로그인했을때 쿠키 유지 시간
-        //   },
         store: MongoStore.create({ mongoUrl: process.env.DB_URL }),
     })
   );
