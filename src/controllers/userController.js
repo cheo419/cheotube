@@ -210,8 +210,16 @@ export const postChangePassword = async (req, res) => {
   user.password = newPassword;
   await user.save();
   return res.redirect("/users/logout");
-  // req.session.destroy();   해커들이 로직파악후 302리다이렉트를 프록시를 통해 막은 후 이전 세션데이터도 활용할수있음
-  // return res.redirect('/login');   좀더 안전하게 하려면 이와 같이 확실하게 destroy 해주는게 좋음
 };
 
-export const see = (req, res) => res.send("See User");
+export const see = async (req, res) => {
+  const { id } = req.params;
+  const user = await User.findById(id);
+  if (!user) {
+    return res.status(404).render("404", { pageTitle: "User not found." });
+  }
+  return res.render("users/profile", {
+    pageTitle: `${user.name}의 프로필`,
+    user,
+  });
+};
