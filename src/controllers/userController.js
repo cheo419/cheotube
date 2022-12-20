@@ -1,5 +1,4 @@
 import User from "../models/User";
-import Video from "../models/Video";
 import fetch from "node-fetch";
 import bcrypt from "bcrypt";
 
@@ -154,7 +153,7 @@ export const postEdit = async (req, res) => {
   if (
     (findUsername != null && findUsername._id != _id) ||
     (findEmail != null && findEmail._id != _id)
-    ) {
+  ) {
     return res.render("edit-profile", {
       pageTitle: "Edit  Profile",
       errorMessage: "User is exist",
@@ -203,9 +202,9 @@ export const postChangePassword = async (req, res) => {
     });
   }
   if (oldPassword === newPassword) {
-    return res.status(400).render('users/change-password', {
-    pageTitle: "Change Password",
-    errorMessage: 'The old password equals new password',
+    return res.status(400).render("users/change-password", {
+      pageTitle: "Change Password",
+      errorMessage: "The old password equals new password",
     });
   }
   user.password = newPassword;
@@ -215,7 +214,13 @@ export const postChangePassword = async (req, res) => {
 
 export const see = async (req, res) => {
   const { id } = req.params;
-  const user = await User.findById(id).populate("videos");
+  const user = await User.findById(id).populate({
+    path: "videos",
+    populate: {
+      path: "owner",
+      model: "User",
+    },
+  });
   if (!user) {
     return res.status(404).render("404", { pageTitle: "User not found." });
   }

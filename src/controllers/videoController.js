@@ -2,7 +2,9 @@ import Video from "../models/Video";
 import User from "../models/User";
 
 export const home = async (req, res) => {
-  const videos = await Video.find({}).sort({ createdAt: "desc" });
+  const videos = await Video.find({})
+    .sort({ createdAt: "desc" })
+    .populate("owner");
   return res.render("home", { pageTitle: "Home", videos });
 };
 export const watch = async (req, res) => {
@@ -87,17 +89,17 @@ export const deleteVideo = async (req, res) => {
   } = req.session;
   const video = await Video.findById(id);
   const user = await User.findById(_id);
-    if(!video){
-      return res.status(404).render("404", { pageTitle: "Video not found." });
-    }
-    if (String(video.owner) !== String(_id)) {
-      return res.status(403).redirect("/");
-    }
+  if (!video) {
+    return res.status(404).render("404", { pageTitle: "Video not found." });
+  }
+  if (String(video.owner) !== String(_id)) {
+    return res.status(403).redirect("/");
+  }
   await Video.findByIdAndDelete(id);
-  user.videos.splice(user.videos.indexOf(id),1);
+  user.videos.splice(user.videos.indexOf(id), 1);
   user.save();
   return res.redirect("/");
-}
+};
 
 export const search = async (req, res) => {
   const { keyword } = req.query;
@@ -107,8 +109,7 @@ export const search = async (req, res) => {
       title: {
         $regex: new RegExp(`${keyword}$`, "i"),
       },
-    });
+    }).populate("owner");
   }
   return res.render("search", { pageTitle: "Search", videos });
 };
-
