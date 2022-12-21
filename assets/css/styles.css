@@ -139,7 +139,7 @@ header {
   align-items: center;
 }
 header .header__logo {
-  color: #cc0d00;
+  color: #ff1300;
   font-size: 38px;
 }
 header ul {
@@ -253,7 +253,7 @@ input[type=submit],
   border-radius: 5px;
   padding: 12px 20px;
   background-color: white;
-  color: #cc0d00;
+  color: #ff1300;
   text-align: center;
   cursor: pointer;
   display: block;
@@ -308,8 +308,7 @@ input[type=submit],
 }
 .profile__data img {
   margin-bottom: 10px;
-  max-width: 250px;
-  max-height: 250px;
+  max-height: 170px;
   border-radius: 25%;
 }
 .profile__data h3 {
