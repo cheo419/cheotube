@@ -118,13 +118,16 @@ const handleMouseLeave = () => {
   controlsTimeout = setTimeout(hideControls, 3000);
 };
 
-playBtn.addEventListener("click", handlePlayClick);
-video.addEventListener("click", handlePlayClick);
-document.addEventListener("keyup", (event) => {
+const handleKeydown = (event) => {
   if (event.code === "Space") {
     handlePlayClick();
+    event.preventDefault();
   }
-});
+};
+
+playBtn.addEventListener("click", handlePlayClick);
+video.addEventListener("click", handlePlayClick);
+document.addEventListener("keydown", handleKeydown);
 muteBtn.addEventListener("click", handleMuteClick);
 document.addEventListener("keyup", (event) => {
   let _key = event.key || event.keyCode;
