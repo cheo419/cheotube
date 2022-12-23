@@ -14,7 +14,7 @@ let controlsMovementTimeout = null;
 let volumeValue = 0.5;
 video.volume = volumeValue;
 
-const handlePlayClick = (e) => {
+const handlePlayClick = () => {
   if (video.paused) {
     video.play();
   } else {
@@ -23,7 +23,7 @@ const handlePlayClick = (e) => {
   playBtn.innerText = video.paused ? "Play" : "Pause";
 };
 
-const handleMuteClick = (e) => {
+const handleMuteClick = () => {
   if (video.muted) {
     video.muted = false;
   } else {
@@ -119,7 +119,19 @@ const handleMouseLeave = () => {
 };
 
 playBtn.addEventListener("click", handlePlayClick);
+video.addEventListener("click", handlePlayClick);
+document.addEventListener("keyup", (event) => {
+  if (event.code === "Space") {
+    handlePlayClick();
+  }
+});
 muteBtn.addEventListener("click", handleMuteClick);
+document.addEventListener("keyup", (event) => {
+  let _key = event.key || event.keyCode;
+  if (_key === 77 || _key === "m") {
+    handleMuteClick();
+  }
+});
 volumeRange.addEventListener("input", handleVolumeChange);
 video.addEventListener("loadedmetadata", handleLoadedMetadata);
 video.addEventListener("timeupdate", handleTimeUpdate);
