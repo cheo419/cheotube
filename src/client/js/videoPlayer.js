@@ -63,11 +63,24 @@ const handleTimeUpdate = () => {
   timeline.value = Math.floor(video.currentTime);
 };
 
+let videoPlayStatus = false;
+let setVideoPlayStatus = false;
+
 const handleTimelineChange = (event) => {
   const {
     target: { value },
   } = event;
+  if (!setVideoPlayStatus) {
+    videoPlayStatus = video.paused ? false : true;
+    setVideoPlayStatus = true;
+  }
+  video.pause();
   video.currentTime = value;
+};
+
+const handleTimelineSet = () => {
+  videoPlayStatus ? video.play() : video.pause();
+  setVideoPlayStatus = false;
 };
 
 playBtn.addEventListener("click", handlePlayClick);
@@ -76,6 +89,7 @@ volumeRange.addEventListener("input", handleVolumeChange);
 video.addEventListener("loadedmetadata", handleLoadedMetadata);
 video.addEventListener("timeupdate", handleTimeUpdate);
 timeline.addEventListener("input", handleTimelineChange);
+timeline.addEventListener("change", handleTimelineSet);
 
 video.readyState
   ? handleMetadata()
