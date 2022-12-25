@@ -140,7 +140,7 @@ document.addEventListener("keyup", (event) => {
   }
 });
 volumeRange.addEventListener("input", handleVolumeChange);
-video.addEventListener("loadeddata", handleLoadedMetadata);
+video.addEventListener("loadedmetadata", handleLoadedMetadata);
 video.addEventListener("timeupdate", handleTimeUpdate);
 video.addEventListener("ended", handleMediaFinished);
 timeline.addEventListener("input", handleTimelineChange);
@@ -151,4 +151,4 @@ videoContainer.addEventListener("mouseleave", handleMouseLeave);
 
 video.readyState
   ? handleLoadedMetadata()
-  : video.addEventListener("loadeddata", handleLoadedMetadata);
+  : video.addEventListener("loadedmetadata", handleLoadedMetadata);
