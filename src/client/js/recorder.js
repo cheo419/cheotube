@@ -200,23 +200,13 @@
 //   actionBtn.addEventListener("click", handleStart);
 // };
 
-// const handleStop = () => {
-//   startBtn.innerText = "Download Recording";
-//   startBtn.removeEventListener("click", handleStop);
-//   startBtn.addEventListener("click", handleDownload);
-//   actionBtn.innerText = "Download Recording";
-//   actionBtn.removeEventListener("click", handleStop);
-//   actionBtn.addEventListener("click", handleDownload);
-//   recorder.stop();
-// };
-
 // const handleStart = () => {
-//   startBtn.innerText = "Stop Recording";
+//     actionBtn.innerText = "Recording";
+//   actionBtn.disabled = true;
 //   startBtn.removeEventListener("click", handleStart);
 //   startBtn.addEventListener("click", handleStop);
 //   actionBtn.innerText = "Stop Recording";
 //   actionBtn.removeEventListener("click", handleStart);
-//   actionBtn.addEventListener("click", handleStop);
 //   recorder = new MediaRecorder(stream, { mimeType: "video/webm" });
 //   recorder.ondataavailable = (event) => {
 //     videoFile = URL.createObjectURL(event.data);
@@ -224,13 +214,22 @@
 //     video.src = videoFile;
 //     video.loop = true;
 //     video.play();
+//     actionBtn.innerText = "Download";
+//     actionBtn.disabled = false;
+//     actionBtn.addEventListener("click", handleDownload);
 //   };
 //   recorder.start();
+//   setTimeout(() => {
+//     recorder.stop();
+//   }, 5000);
 // };
 // const init = async () => {
 //   stream = await navigator.mediaDevices.getUserMedia({
 //     audio: false,
-//     video: true,
+//     video: {
+//         width: 1024,
+//         height: 576,
+//       },
 //   });
 //   video.srcObject = stream;
 //   video.play();
