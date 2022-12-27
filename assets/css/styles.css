@@ -333,6 +333,11 @@ input[type=submit]:disabled,
   font-size: 20px;
 }
 
+.location__Del {
+  margin-top: 60px;
+  margin-left: 1100px;
+}
+
 .search__form {
   margin-bottom: 60px;
   display: flex;

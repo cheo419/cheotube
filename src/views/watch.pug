@@ -19,6 +19,9 @@ block content
             div
                 span#fullScreen
                     i.fas.fa-expand
+    div.location__Del
+        if String(video.owner) === String(loggedInUser._id)
+        a(href=`${video.id}/delete`) Delete Video
     //-
         div
             p=video.description
