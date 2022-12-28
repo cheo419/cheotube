@@ -134,9 +134,19 @@ export const finishGithubLogin = async (req, res) => {
 };
 
 export const logout = (req, res) => {
-  req.session.destroy();
+  // req.session.destroy();
+  // req.flash("info", "Bye Bye");
+  // return res.redirect("/"); // req.flash 를 사용하면 destroy 불가능
+
+  // req.session.user = null;
+  // res.locals.loggedInUser = req.session.user;
+  // req.flash("info", "Bye Bye");
+  // req.session.loggedIn = false;
+  // return res.redirect("/"); // 다른사람의 답
+
+  req.session.loggedIn = false;
   req.flash("info", "Bye Bye");
-  return res.redirect("/");
+  return res.redirect("/"); // 내 코드
 };
 export const getEdit = (req, res) => {
   return res.render("edit-profile", { pageTitle: "Edit Profile" });
