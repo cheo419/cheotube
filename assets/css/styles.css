@@ -333,11 +333,6 @@ input[type=submit]:disabled,
   font-size: 20px;
 }
 
-.location__Del {
-  margin-top: 60px;
-  margin-left: 1100px;
-}
-
 .search__form {
   margin-bottom: 60px;
   display: flex;
@@ -415,6 +410,27 @@ form label {
 .upload__container .upload__video video {
   max-width: 100%;
   margin-bottom: 10px;
+}
+
+.video__data {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.video__data .video__title {
+  font-size: 26px;
+  margin-bottom: 5px;
+}
+.video__data .video__createdAt {
+  font-size: 12px;
+}
+.video__data .video__owner {
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+.video__data .video__owner a {
+  color: cornflowerblue;
+  text-decoration: underline;
 }
 
 a {
